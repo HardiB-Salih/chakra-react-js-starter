@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
+import customTheme from './utils/customTheme';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -14,8 +16,10 @@ root.render(
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
-        <ColorModeScript />
-        <App />
+        <ChakraProvider theme={customTheme}>
+          <ColorModeScript />
+          <App />
+        </ChakraProvider>
       </BrowserRouter>
     </HelmetProvider>
   </StrictMode>
