@@ -1,23 +1,45 @@
 import React from 'react';
-import { useColorMode, useColorModeValue, IconButton } from '@chakra-ui/react';
-import { FaMoon, FaSun } from 'react-icons/fa';
+import { Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react';
+import { FaMoon, FaSun, FaRegSun } from 'react-icons/fa';
+import useColorModeSwitcherRedux from './hooks/useColorModeSwitcherRedux';
 
 export const ColorModeSwitcher = props => {
-  const { toggleColorMode } = useColorMode();
-  const text = useColorModeValue('dark', 'light');
-  const SwitchIcon = useColorModeValue(FaMoon, FaSun);
+  // const { mode, setModeAndColor } = useColorModeSwitcher();
+  const { mode, setModeAndColor } = useColorModeSwitcherRedux();
+
+  let SwitchIcon;
+  let text;
+  switch (mode) {
+    case 'light':
+      SwitchIcon = FaSun;
+      text = 'Light';
+      break;
+    case 'dark':
+      SwitchIcon = FaMoon;
+      text = 'Dark';
+
+      break;
+    default:
+      SwitchIcon = FaRegSun;
+      text = 'System';
+  }
 
   return (
-    <IconButton
-      size="md"
-      fontSize="lg"
-      aria-label={`Switch to ${text} mode`}
-      variant="ghost"
-      color="current"
-      marginLeft="2"
-      onClick={toggleColorMode}
-      icon={<SwitchIcon />}
-      {...props}
-    />
+    <Menu>
+      <MenuButton
+        as={Button}
+        aria-label="Options"
+        rightIcon={<SwitchIcon />}
+        variant="outline"
+        {...props}
+      >
+        {text}
+      </MenuButton>
+      <MenuList>
+        <MenuItem onClick={() => setModeAndColor('light')}>Light</MenuItem>
+        <MenuItem onClick={() => setModeAndColor('dark')}>Dark</MenuItem>
+        <MenuItem onClick={() => setModeAndColor('system')}>System</MenuItem>
+      </MenuList>
+    </Menu>
   );
 };

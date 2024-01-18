@@ -1,4 +1,4 @@
-import { ColorModeScript } from '@chakra-ui/react';
+import { ColorModeScript, theme } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './App';
@@ -7,7 +7,8 @@ import * as serviceWorker from './serviceWorker';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
-import customTheme from './utils/customTheme';
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from './redux/store';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -15,12 +16,14 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <StrictMode>
     <HelmetProvider>
-      <BrowserRouter>
-        <ChakraProvider theme={customTheme}>
-          <ColorModeScript />
-          <App />
-        </ChakraProvider>
-      </BrowserRouter>
+      <ReduxProvider store={store}>
+        <BrowserRouter>
+          <ChakraProvider theme={theme}>
+            <ColorModeScript />
+            <App />
+          </ChakraProvider>
+        </BrowserRouter>
+      </ReduxProvider>
     </HelmetProvider>
   </StrictMode>
 );
