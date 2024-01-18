@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react';
 import { FaMoon, FaSun, FaRegSun } from 'react-icons/fa';
-import useColorModeSwitcherRedux from './hooks/useColorModeSwitcherRedux';
+import useColorModeSwitcherRedux from '../../hooks/useColorModeSwitcherRedux';
 
 export const ColorModeSwitcher = props => {
   // const { mode, setModeAndColor } = useColorModeSwitcher();

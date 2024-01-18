@@ -1,6 +1,6 @@
 import { Box, HStack, Text } from '@chakra-ui/react';
 import React from 'react';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import { ColorModeSwitcher } from '../components/header/ColorModeSwitcher';
 
 const Header = () => {
   return (
